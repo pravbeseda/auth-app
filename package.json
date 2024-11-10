@@ -3,6 +3,16 @@
   "version": "0.0.0",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "start": "nx serve",
+    "build": "nx build",
+    "cvr": "jest --verbose --coverage --coverageReporters='text-summary'",
+    "test": "nx run-many --target=test --all --parallel",
+    "test:affected": "nx affected:test",
+    "test:coverage": "nx run-many --target=test --all --parallel --code-coverage",
+    "lint": "nx lint",
+    "e2e": "nx e2e"
+  },
   "devDependencies": {
     "@angular-devkit/build-angular": "~18.2.0",
     "@angular-devkit/core": "~18.2.0",
@@ -74,6 +84,7 @@
     "@nestjs/platform-express": "^10.0.2",
     "@ng-bootstrap/ng-bootstrap": "^17.0.1",
     "axios": "^1.6.0",
+    "dotenv": "^16.4.5",
     "express": "~4.18.2",
     "reflect-metadata": "^0.1.13",
     "rxjs": "~7.8.0",
