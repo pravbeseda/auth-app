@@ -549,6 +549,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@angular/localize@npm:~18.2.0":
+  version: 18.2.11
+  resolution: "@angular/localize@npm:18.2.11"
+  dependencies:
+    "@babel/core": "npm:7.25.2"
+    "@types/babel__core": "npm:7.20.5"
+    fast-glob: "npm:3.3.2"
+    yargs: "npm:^17.2.1"
+  peerDependencies:
+    "@angular/compiler": 18.2.11
+    "@angular/compiler-cli": 18.2.11
+  bin:
+    localize-extract: tools/bundles/src/extract/cli.js
+    localize-migrate: tools/bundles/src/migrate/cli.js
+    localize-translate: tools/bundles/src/translate/cli.js
+  checksum: 10c0/619c5566499e4b65c4a729c5c067f32692e6cd41a2bf7511ae1e114024a7b44cd66a08bcd1af8c7bd098bf9863d79ab8a48b14c28474cf90ddfa9374ab75a620
+  languageName: node
+  linkType: hard
+
 "@angular/platform-browser-dynamic@npm:~18.2.0":
   version: 18.2.11
   resolution: "@angular/platform-browser-dynamic@npm:18.2.11"
@@ -637,6 +656,7 @@ __metadata:
     "@angular/core": "npm:~18.2.0"
     "@angular/forms": "npm:~18.2.0"
     "@angular/language-service": "npm:~18.2.0"
+    "@angular/localize": "npm:~18.2.0"
     "@angular/platform-browser": "npm:~18.2.0"
     "@angular/platform-browser-dynamic": "npm:~18.2.0"
     "@angular/platform-server": "npm:~18.2.0"
@@ -664,6 +684,7 @@ __metadata:
     "@nx/webpack": "npm:20.0.12"
     "@nx/workspace": "npm:20.0.12"
     "@playwright/test": "npm:^1.36.0"
+    "@popperjs/core": "npm:^2.11.8"
     "@schematics/angular": "npm:~18.2.0"
     "@swc-node/register": "npm:~1.9.1"
     "@swc/cli": "npm:~0.3.12"
@@ -676,6 +697,7 @@ __metadata:
     "@typescript-eslint/utils": "npm:^8.0.0"
     angular-eslint: "npm:^18.3.0"
     axios: "npm:^1.6.0"
+    bootstrap: "npm:^5.3.2"
     dotenv: "npm:^16.4.5"
     eslint: "npm:^9.8.0"
     eslint-config-prettier: "npm:^9.0.0"
@@ -5047,6 +5069,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@popperjs/core@npm:^2.11.8":
+  version: 2.11.8
+  resolution: "@popperjs/core@npm:2.11.8"
+  checksum: 10c0/4681e682abc006d25eb380d0cf3efc7557043f53b6aea7a5057d0d1e7df849a00e281cd8ea79c902a35a414d7919621fc2ba293ecec05f413598e0b23d5a1e63
+  languageName: node
+  linkType: hard
+
 "@rollup/plugin-babel@npm:^6.0.4":
   version: 6.0.4
   resolution: "@rollup/plugin-babel@npm:6.0.4"
@@ -5834,7 +5863,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/babel__core@npm:^7.1.14":
+"@types/babel__core@npm:7.20.5, @types/babel__core@npm:^7.1.14":
   version: 7.20.5
   resolution: "@types/babel__core@npm:7.20.5"
   dependencies:
@@ -7451,6 +7480,15 @@ __metadata:
   version: 1.0.0
   resolution: "boolbase@npm:1.0.0"
   checksum: 10c0/e4b53deb4f2b85c52be0e21a273f2045c7b6a6ea002b0e139c744cb6f95e9ec044439a52883b0d74dedd1ff3da55ed140cfdddfed7fb0cccbed373de5dce1bcf
+  languageName: node
+  linkType: hard
+
+"bootstrap@npm:^5.3.2":
+  version: 5.3.3
+  resolution: "bootstrap@npm:5.3.3"
+  peerDependencies:
+    "@popperjs/core": ^2.11.8
+  checksum: 10c0/bb68ca7b763977b9cce40cb5b8c676ae19a716d2f5d15009fa7bdbcec9dea426968e3cb748fbed7592fbf10edd7c749aea841c2920996a7c1aa5e0a6e2d4c2ad
   languageName: node
   linkType: hard
 
