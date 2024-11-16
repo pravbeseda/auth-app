@@ -3,11 +3,23 @@ import { join } from 'path';
 import { EnvKeys } from './constants/env-keys';
 
 export class EnvService {
+    private readonly config: Record<string, string | undefined>;
+
     constructor() {
-        dotenv.config({ path: join(__dirname, '../../../../../.env') });
+        const envPath = join(process.cwd(), '.env');
+        dotenv.config({ path: envPath });
+        this.config = { ...process.env };
     }
 
     get(key: EnvKeys): string | undefined {
-        return process.env[key];
+        return this.config[key];
+    }
+
+    getOrThrow(key: EnvKeys): string {
+        const value = this.config[key];
+        if (!value) {
+            throw new Error(`Environment variable ${key} is not set`);
+        }
+        return value;
     }
 }

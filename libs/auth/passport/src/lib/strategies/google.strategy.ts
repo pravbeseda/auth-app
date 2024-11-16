@@ -1,13 +1,13 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { Strategy, Profile } from 'passport-google-oauth20';
-import { AuthBaseService } from '@auth-app/core';
 import { EnvService, ENV } from '@auth-app/env';
+import { AUTH_SERVICE_TOKEN, AuthService } from '@auth-app/shared';
 
 @Injectable()
 export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
     constructor(
-        private readonly authService: AuthBaseService,
+        @Inject(AUTH_SERVICE_TOKEN) private readonly authService: AuthService,
         private readonly envService: EnvService
     ) {
         super({

@@ -1,1 +1,1 @@
-export * from './lib/services/auth-base.service';
+export { AuthModule } from './lib/auth.module';
