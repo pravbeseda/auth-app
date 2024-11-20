@@ -1,1 +1,1 @@
-export { AuthModule as PassportAuthModule } from './lib/auth.module';
+export { PassportAuthModule } from './lib/passport-auth.module';

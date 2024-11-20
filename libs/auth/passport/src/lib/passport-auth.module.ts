@@ -6,4 +6,4 @@ import { GoogleStrategy } from './strategies/google.strategy';
     providers: [GoogleStrategy, EnvService],
     exports: [GoogleStrategy],
 })
-export class AuthModule {}
+export class PassportAuthModule {}
