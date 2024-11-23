@@ -1,11 +1,10 @@
 import { Module } from '@nestjs/common';
-import { AuthImplService } from './services/auth-impl.service';
-import { PassportAuthModule } from '@auth-app/passport';
-import { AUTH_SERVICE_TOKEN } from '@auth-app/shared';
+import { PassportModule } from '@nestjs/passport';
+import { GoogleStrategy } from './strategies/google-strategy';
+import { EnvService } from '@auth-app/env';
 
 @Module({
-    imports: [PassportAuthModule],
-    providers: [{ provide: AUTH_SERVICE_TOKEN, useClass: AuthImplService }],
-    exports: [AUTH_SERVICE_TOKEN],
+    imports: [PassportModule.register({ defaultStrategy: 'google' })],
+    providers: [GoogleStrategy, EnvService],
 })
 export class AuthModule {}

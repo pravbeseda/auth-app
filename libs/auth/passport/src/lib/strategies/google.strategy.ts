@@ -7,7 +7,7 @@ import { AUTH_SERVICE_TOKEN, AuthService } from '@auth-app/shared';
 @Injectable()
 export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
     constructor(
-        @Inject(AUTH_SERVICE_TOKEN) private readonly authService: AuthService,
+        // @Inject(AUTH_SERVICE_TOKEN) private readonly authService: AuthService,
         private readonly envService: EnvService
     ) {
         super({
@@ -18,13 +18,13 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
         });
     }
 
-    async validate(accessToken: string, refreshToken: string, profile: Profile) {
-        const userProfile = {
-            id: profile.id,
-            displayName: profile.displayName,
-            email: profile.emails ? profile.emails[0].value : '',
-            photoUrl: profile.photos ? profile.photos[0].value : '',
-        };
-        return this.authService.validateUser(userProfile);
-    }
+    // async validate(accessToken: string, refreshToken: string, profile: Profile) {
+    //     const userProfile = {
+    //         id: profile.id,
+    //         displayName: profile.displayName,
+    //         email: profile.emails ? profile.emails[0].value : '',
+    //         photoUrl: profile.photos ? profile.photos[0].value : '',
+    //     };
+    //     return this.authService.validateUser(userProfile);
+    // }
 }
