@@ -1,22 +1,19 @@
-import { Controller, Get, Req, Res } from '@nestjs/common';
-import { Response } from 'express';
-import { AuthService } from '@auth-app/shared';
+import { Controller, Get, Req, Res, UseGuards } from '@nestjs/common';
+import { Response, Request } from 'express';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('auth')
 export class AuthController {
-    constructor(private readonly authService: AuthService) {}
+    @Get('google')
+    @UseGuards(AuthGuard('google'))
+    async googleLogin(@Res() res: Response) {
+        // redirect to google
+    }
 
-    // @Get('google')
-    // async googleLogin(@Res() res: Response) {
-    //     // Перенаправление на страницу авторизации Google
-    //     const redirectUrl = this.authService.getGoogleAuthUrl();
-    //     res.redirect(redirectUrl);
-    // }
-    //
-    // @Get('google/callback')
-    // async googleCallback(@Req() req: any, @Res() res: Response) {
-    //     // Обработка callback-а от Google
-    //     const user = await this.authService.handleGoogleCallback(req);
-    //     return res.json(user);
-    // }
+    @Get('google/callback')
+    @UseGuards(AuthGuard('google'))
+    async googleCallback(@Req() req: Request, @Res() res: Response) {
+        const user = req.user;
+        return res.json(user);
+    }
 }
