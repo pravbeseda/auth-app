@@ -20,7 +20,6 @@
             "@auth-app/env": ["libs/core/env/src/index.ts"],
             "@auth-app/graphql": ["libs/data-access/graphql/src/index.ts"],
             "@auth-app/logger": ["libs/core/logger/src/index.ts"],
-            "@auth-app/passport": ["libs/auth/passport/src/index.ts"],
             "@auth-app/prisma": ["libs/data-access/prisma/src/index.ts"],
             "@auth-app/shared": ["libs/auth/shared/src/index.ts"],
             "@auth-app/types": ["libs/shared/types/src/index.ts"]

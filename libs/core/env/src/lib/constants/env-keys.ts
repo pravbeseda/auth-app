@@ -1,7 +1,10 @@
 export const ENV = {
+    MODE: 'MODE',
+    API_URL: 'API_URL',
     GOOGLE_CLIENT_ID: 'GOOGLE_CLIENT_ID',
     GOOGLE_CLIENT_SECRET: 'GOOGLE_CLIENT_SECRET',
     GOOGLE_CALLBACK_URL: 'GOOGLE_CALLBACK_URL',
+    JWT_SECRET: 'JWT_SECRET',
 } as const;
 
 export type EnvKeys = keyof typeof ENV;

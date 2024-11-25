@@ -1,12 +1,18 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'app-home',
     standalone: true,
-    imports: [RouterModule],
+    imports: [RouterModule, AsyncPipe],
     templateUrl: './home.component.html',
     styleUrl: './home.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeComponent {}
+export class HomeComponent {
+    private readonly authService: AuthService = inject(AuthService);
+
+    readonly isLoggedIn$ = this.authService.checkLoginStatus();
+}

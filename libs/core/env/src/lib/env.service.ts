@@ -11,6 +11,7 @@ export class EnvService {
         this.config = { ...process.env };
     }
 
+    /** @deprecated */
     get(key: EnvKeys): string | undefined {
         return this.config[key];
     }
