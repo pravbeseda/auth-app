@@ -37,6 +37,8 @@ export class AuthController {
             sameSite: 'strict', // CSRF protection
         });
 
+        console.log('Token set in cookie:', accessToken);
+
         res.redirect(`http://localhost:4200`);
     }
 }

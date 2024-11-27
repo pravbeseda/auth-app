@@ -14,6 +14,11 @@ async function bootstrap() {
     await app.listen(port);
     Logger.log(`🚀 Application is running on: http://localhost:${port}`);
 
+    app.enableCors({
+        origin: 'http://localhost:4200', // TODO change to env
+        credentials: true,
+    });
+
     //check routes
     const server = app.getHttpAdapter().getInstance();
     const router = server._router;

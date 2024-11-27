@@ -10,13 +10,17 @@ export class JwtAuthGuard implements CanActivate {
         const token = request.cookies?.access_token; // Читаем токен из cookies
 
         if (!token) {
+            console.error('JWT Guard: No token found');
             return false;
         }
 
         try {
-            request.user = this.jwtService.verify(token);
+            const decoded = this.jwtService.verify(token);
+            console.log('JWT Guard: Token decoded successfully', decoded);
+            request.user = decoded;
             return true;
-        } catch (err) {
+        } catch (err: any) {
+            console.error('JWT Guard: Token verification failed', err.message);
             return false;
         }
     }

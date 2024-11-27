@@ -17,7 +17,8 @@ export class AuthService {
                 this.loggedIn = true;
                 return true;
             }),
-            catchError(_error => {
+            catchError(error => {
+                console.error('checkLoginStatus error:', error);
                 this.loggedIn = false;
                 return of(false);
             })
