@@ -2,9 +2,9 @@ import { Controller, Get, Req, Res, UseGuards } from '@nestjs/common';
 import { Response, Request } from 'express';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from '../services/auth.service';
-import { User } from '@auth-app/shared';
 import { JwtAuthGuard } from '../guards/jwt-auth.guard';
 import { ConfigService } from '@nestjs/config';
+import { User } from '../models/user';
 
 @Controller('auth')
 export class AuthController {
