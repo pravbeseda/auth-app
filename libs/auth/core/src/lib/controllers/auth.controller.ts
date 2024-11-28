@@ -33,8 +33,9 @@ export class AuthController {
 
         res.cookie('access_token', accessToken, {
             httpOnly: true,
-            secure: this.configService.get<string>('MODE') === 'production', // HTTPS only
-            sameSite: 'strict', // CSRF protection
+            secure: false, // this.configService.get<string>('MODE') === 'production', // HTTPS only
+            sameSite: 'lax', // 'strict', // CSRF protection
+            path: '/',
         });
 
         console.log('Token set in cookie:', accessToken);

@@ -7,7 +7,8 @@ export class JwtAuthGuard implements CanActivate {
 
     canActivate(context: ExecutionContext): boolean {
         const request = context.switchToHttp().getRequest();
-        const token = request.cookies?.access_token; // Читаем токен из cookies
+        console.log('Cookies in request:', request.cookies);
+        const token = request.cookies?.access_token;
 
         if (!token) {
             console.error('JWT Guard: No token found');
