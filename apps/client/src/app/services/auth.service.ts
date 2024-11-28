@@ -12,7 +12,7 @@ export class AuthService {
     constructor(private http: HttpClient) {}
 
     checkLoginStatus(): Observable<boolean> {
-        return this.http.get('/auth/me', { withCredentials: true }).pipe(
+        return this.http.get('/auth/me').pipe(
             map(_user => {
                 this.loggedIn = true;
                 return true;
