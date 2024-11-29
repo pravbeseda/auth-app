@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { AuthService } from './services/auth.service';
 
 @Component({
     standalone: true,
@@ -10,4 +11,9 @@ import { RouterModule } from '@angular/router';
 })
 export class AppComponent {
     title = 'client';
+    private readonly authService: AuthService = inject(AuthService);
+
+    constructor() {
+        this.authService.checkLoginStatus().subscribe();
+    }
 }

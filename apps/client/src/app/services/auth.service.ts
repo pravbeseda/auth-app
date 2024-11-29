@@ -1,31 +1,38 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, first, Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
     providedIn: 'root',
 })
 export class AuthService {
-    private loggedIn = false;
+    private readonly loggedInSubject = new BehaviorSubject<boolean | undefined>(undefined);
+    public readonly loggedIn$: Observable<boolean | undefined> =
+        this.loggedInSubject.asObservable();
 
-    constructor(private http: HttpClient) {}
+    constructor(
+        private http: HttpClient,
+        @Inject(PLATFORM_ID) private platformId: object
+    ) {}
 
-    checkLoginStatus(): Observable<boolean> {
+    checkLoginStatus(): Observable<boolean | undefined> {
+        if (!isPlatformBrowser(this.platformId)) {
+            return of(undefined);
+        }
+
         return this.http.get('/auth/me').pipe(
             map(_user => {
-                this.loggedIn = true;
+                this.loggedInSubject.next(true);
                 return true;
             }),
+            first(),
             catchError(error => {
                 console.error('checkLoginStatus error:', error.message);
-                this.loggedIn = false;
+                this.loggedInSubject.next(false);
                 return of(false);
             })
         );
-    }
-
-    isLoggedIn(): boolean {
-        return this.loggedIn;
     }
 }

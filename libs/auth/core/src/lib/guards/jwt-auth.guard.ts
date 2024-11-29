@@ -7,7 +7,6 @@ export class JwtAuthGuard implements CanActivate {
 
     canActivate(context: ExecutionContext): boolean {
         const request = context.switchToHttp().getRequest();
-        console.log('Cookies in request:', request.cookies);
         const token = request.cookies?.access_token;
 
         if (!token) {
@@ -16,9 +15,7 @@ export class JwtAuthGuard implements CanActivate {
         }
 
         try {
-            const decoded = this.jwtService.verify(token);
-            console.log('JWT Guard: Token decoded successfully', decoded);
-            request.user = decoded;
+            request.user = this.jwtService.verify(token);
             return true;
         } catch (err: any) {
             console.error('JWT Guard: Token verification failed', err.message);

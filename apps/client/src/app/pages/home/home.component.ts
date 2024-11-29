@@ -14,5 +14,5 @@ import { AsyncPipe } from '@angular/common';
 export class HomeComponent {
     private readonly authService: AuthService = inject(AuthService);
 
-    readonly isLoggedIn$ = this.authService.checkLoginStatus();
+    readonly isLoggedIn$ = this.authService.loggedIn$;
 }
