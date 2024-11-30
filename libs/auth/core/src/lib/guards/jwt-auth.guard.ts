@@ -1,4 +1,4 @@
-import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
+import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
@@ -11,7 +11,7 @@ export class JwtAuthGuard implements CanActivate {
 
         if (!token) {
             console.error('JWT Guard: No token found');
-            return false;
+            throw new UnauthorizedException('Access token is missing');
         }
 
         try {
@@ -19,7 +19,7 @@ export class JwtAuthGuard implements CanActivate {
             return true;
         } catch (err: any) {
             console.error('JWT Guard: Token verification failed', err.message);
-            return false;
+            throw new UnauthorizedException('Access token is invalid or expired');
         }
     }
 }

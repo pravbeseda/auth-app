@@ -9,7 +9,7 @@ export class AuthService implements AuthService {
     generateAccessToken({ id, email }: User): string {
         const payload = { sub: id, email };
         return this.jwtService.sign(payload, {
-            expiresIn: '1m',
+            expiresIn: '5m',
         });
     }
 
