@@ -6,6 +6,11 @@
         @switch (isLoggedIn$ | async) {
             @case (true) {
                 You are logged in!
+                <a
+                    (click)="logout()"
+                    class="btn btn-primary">
+                    Logout
+                </a>
             }
             @case (false) {
                 <a

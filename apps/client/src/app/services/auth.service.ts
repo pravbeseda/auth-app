@@ -13,8 +13,8 @@ export class AuthService {
         this.loggedInSubject.asObservable();
 
     constructor(
-        private http: HttpClient,
-        @Inject(PLATFORM_ID) private platformId: object
+        private readonly http: HttpClient,
+        @Inject(PLATFORM_ID) private readonly platformId: object
     ) {}
 
     checkLoginStatus(): Observable<boolean | undefined> {
@@ -41,8 +41,6 @@ export class AuthService {
     }
 
     logout(): void {
-        this.http.post('/auth/logout', {}, { withCredentials: true }).subscribe(() => {
-            //
-        });
+        this.http.post('/auth/logout', {}).subscribe(() => this.loggedInSubject.next(false));
     }
 }

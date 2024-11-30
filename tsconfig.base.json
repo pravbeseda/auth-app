@@ -18,7 +18,6 @@
             "@auth-app/core": ["libs/auth/core/src/index.ts"],
             "@auth-app/database": ["libs/data-access/database/src/index.ts"],
             "@auth-app/graphql": ["libs/data-access/graphql/src/index.ts"],
-            "@auth-app/logger": ["libs/core/logger/src/index.ts"],
             "@auth-app/prisma": ["libs/data-access/prisma/src/index.ts"],
             "@auth-app/shared": ["libs/shared/src/index.ts"]
         }

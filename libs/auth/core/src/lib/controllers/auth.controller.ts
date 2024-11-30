@@ -1,5 +1,5 @@
 import { Controller, Get, Post, Req, Res, UseGuards } from '@nestjs/common';
-import { Response, Request } from 'express';
+import { Response, Request, CookieOptions } from 'express';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from '../services/auth.service';
 import { JwtAuthGuard } from '../guards/jwt-auth.guard';
@@ -9,6 +9,18 @@ import { JwtService } from '@nestjs/jwt';
 
 @Controller('auth')
 export class AuthController {
+    private readonly accessTokenOptions: CookieOptions = {
+        httpOnly: true,
+        secure: this.configService.get<string>('MODE') === 'production',
+        sameSite: 'strict',
+        path: '/',
+    } as const;
+
+    private readonly refreshTokenOptions: CookieOptions = {
+        ...this.accessTokenOptions,
+        path: '/auth/refresh',
+    } as const;
+
     constructor(
         private readonly authService: AuthService,
         private readonly configService: ConfigService,
@@ -20,20 +32,13 @@ export class AuthController {
         const refreshToken = req.cookies?.refresh_token;
 
         if (!refreshToken) {
-            return res.status(401).json({ message: 'Refresh token not found' });
+            return res.status(403).json({ message: 'Refresh token not found' });
         }
 
         try {
             const decoded = this.jwtService.verify(refreshToken);
             const user = { id: decoded.sub } as User;
-
-            const accessToken = this.authService.generateAccessToken(user);
-
-            res.cookie('access_token', accessToken, {
-                httpOnly: true,
-                secure: this.configService.get<string>('MODE') === 'production',
-                sameSite: 'strict',
-            });
+            this.refreshTokens(user, res);
 
             return res.status(200).json({ message: 'Token refreshed' });
         } catch (err) {
@@ -57,21 +62,22 @@ export class AuthController {
     @UseGuards(AuthGuard('google'))
     async googleCallback(@Req() req: Request, @Res() res: Response) {
         const user = req.user as User;
+        this.refreshTokens(user, res);
+        res.redirect(`http://localhost:4200`);
+    }
+
+    @Post('logout')
+    logout(@Res() res: Response): void {
+        res.clearCookie('access_token', this.accessTokenOptions);
+        res.clearCookie('refresh_token', this.refreshTokenOptions);
+        res.status(200).json({ message: 'Logged out' });
+    }
+
+    private refreshTokens(user: User, res: Response): void {
         const accessToken = this.authService.generateAccessToken(user);
         const refreshToken = this.authService.generateRefreshToken(user);
 
-        res.cookie('access_token', accessToken, {
-            httpOnly: true,
-            secure: this.configService.get<string>('MODE') === 'production', // HTTPS only
-            sameSite: 'strict', // CSRF protection
-        });
-
-        res.cookie('refresh_token', refreshToken, {
-            httpOnly: true,
-            secure: this.configService.get<string>('MODE') === 'production',
-            sameSite: 'strict',
-        });
-
-        res.redirect(`http://localhost:4200`);
+        res.cookie('access_token', accessToken, this.accessTokenOptions);
+        res.cookie('refresh_token', refreshToken, this.refreshTokenOptions);
     }
 }

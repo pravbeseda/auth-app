@@ -6,7 +6,6 @@
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import cookieParser from 'cookie-parser';
-
 import { AppModule } from './app/app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
@@ -31,19 +30,6 @@ async function bootstrap() {
 
     await app.listen(port);
     Logger.log(`🚀 Application is running on: http://localhost:${port}`);
-
-    //check routes
-    const server = app.getHttpAdapter().getInstance();
-    const router = server._router;
-    if (router && router.stack) {
-        const routes = router.stack
-            .filter(layer => layer.route) // Выбираем только маршруты
-            .map(layer => ({
-                path: layer.route.path,
-                method: Object.keys(layer.route.methods)[0].toUpperCase(),
-            }));
-        console.log('Registered Routes:', routes);
-    }
 }
 
 bootstrap();

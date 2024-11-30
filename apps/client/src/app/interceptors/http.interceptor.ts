@@ -17,11 +17,10 @@ export const apiUrlInterceptor: HttpInterceptorFn = (req, next) => {
     return next(modifiedReq).pipe(
         catchError(error => {
             if (error.status === 401) {
-                // Если accessToken истёк, пытаемся обновить токен
                 return authService.refreshTokens().pipe(
                     switchMap(() => next(modifiedReq)),
                     catchError(refreshError => {
-                        authService.logout(); // Опционально — выходим из системы
+                        authService.logout();
                         return throwError(() => refreshError);
                     })
                 );

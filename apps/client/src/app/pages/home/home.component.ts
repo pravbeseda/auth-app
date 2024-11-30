@@ -15,4 +15,8 @@ export class HomeComponent {
     private readonly authService: AuthService = inject(AuthService);
 
     readonly isLoggedIn$ = this.authService.loggedIn$;
+
+    logout(): void {
+        this.authService.logout();
+    }
 }

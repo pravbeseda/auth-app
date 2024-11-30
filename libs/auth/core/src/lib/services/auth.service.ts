@@ -9,7 +9,7 @@ export class AuthService implements AuthService {
     generateAccessToken({ id, email }: User): string {
         const payload = { sub: id, email };
         return this.jwtService.sign(payload, {
-            expiresIn: '5m',
+            expiresIn: '15m',
         });
     }
 
@@ -19,14 +19,4 @@ export class AuthService implements AuthService {
             expiresIn: '7d',
         });
     }
-
-    // async validateUser(profile: User): Promise<AuthenticatedUser> {
-    //     return {
-    //         id: profile.id,
-    //         email: profile.email,
-    //         displayName: profile.displayName,
-    //         photoUrl: profile.photoUrl,
-    //         accessToken: 'jwt-token',
-    //     };
-    // }
 }
