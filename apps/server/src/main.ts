@@ -8,6 +8,7 @@ import { NestFactory } from '@nestjs/core';
 import cookieParser from 'cookie-parser';
 
 import { AppModule } from './app/app.module';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
@@ -18,6 +19,15 @@ async function bootstrap() {
         origin: 'http://localhost:4200', // TODO change to env
         credentials: true,
     });
+
+    const config = new DocumentBuilder()
+        .setTitle('Auth app example')
+        .setDescription('The auth app API description')
+        .setVersion('1.0')
+        .addTag('auth')
+        .build();
+    const documentFactory = () => SwaggerModule.createDocument(app, config);
+    SwaggerModule.setup('api', app, documentFactory);
 
     await app.listen(port);
     Logger.log(`🚀 Application is running on: http://localhost:${port}`);

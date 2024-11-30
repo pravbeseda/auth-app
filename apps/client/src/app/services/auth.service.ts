@@ -35,4 +35,14 @@ export class AuthService {
             })
         );
     }
+
+    refreshTokens(): Observable<void> {
+        return this.http.post<void>('/auth/refresh', {});
+    }
+
+    logout(): void {
+        this.http.post('/auth/logout', {}, { withCredentials: true }).subscribe(() => {
+            //
+        });
+    }
 }
