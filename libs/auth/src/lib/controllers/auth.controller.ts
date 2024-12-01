@@ -66,6 +66,18 @@ export class AuthController {
         res.redirect(`http://localhost:4200`);
     }
 
+    @Get('yandex')
+    @UseGuards(AuthGuard('yandex'))
+    async yandexLogin(@Res() res: Response) {}
+
+    @Get('yandex/callback')
+    @UseGuards(AuthGuard('yandex'))
+    async yandexCallback(@Req() req: Request, @Res() res: Response) {
+        const user = req.user as User;
+        this.refreshTokens(user, res);
+        res.redirect(`http://localhost:4200`);
+    }
+
     @Post('logout')
     logout(@Res() res: Response): void {
         res.clearCookie('access_token', this.accessTokenOptions);

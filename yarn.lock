@@ -717,6 +717,7 @@ __metadata:
     nx: "npm:20.1.2"
     passport: "npm:^0.7.0"
     passport-google-oauth20: "npm:^2.0.0"
+    passport-yandex: "npm:^0.0.5"
     prettier: "npm:^3.2.4"
     reflect-metadata: "npm:^0.1.13"
     rollup: "npm:^4.14.0"
@@ -14459,6 +14460,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"oauth@npm:0.9.x":
+  version: 0.9.15
+  resolution: "oauth@npm:0.9.15"
+  checksum: 10c0/52204f2a082850efca7e8406e6c6085d89318dc8a85f5a8d6c5594921da36149eb6228bba324af8e2fd9019f084d814ddf835ace6b697ced2b4be0d75f91fb30
+  languageName: node
+  linkType: hard
+
 "object-assign@npm:^4, object-assign@npm:^4.1.1":
   version: 4.1.1
   resolution: "object-assign@npm:4.1.1"
@@ -14896,6 +14904,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"passport-oauth1@npm:1.x.x":
+  version: 1.3.0
+  resolution: "passport-oauth1@npm:1.3.0"
+  dependencies:
+    oauth: "npm:0.9.x"
+    passport-strategy: "npm:1.x.x"
+    utils-merge: "npm:1.x.x"
+  checksum: 10c0/2bf9b0fe9942f5e4d0cda1d9b526f4f2395e3e547f17aa45ea020aa8017831a33bbb0227c747defdb0c1b9f1ad778551dbd310c9cc6866fb09e9986eb20c1745
+  languageName: node
+  linkType: hard
+
 "passport-oauth2@npm:1.x.x":
   version: 1.8.0
   resolution: "passport-oauth2@npm:1.8.0"
@@ -14909,10 +14928,30 @@ __metadata:
   languageName: node
   linkType: hard
 
+"passport-oauth@npm:1.0.x":
+  version: 1.0.0
+  resolution: "passport-oauth@npm:1.0.0"
+  dependencies:
+    passport-oauth1: "npm:1.x.x"
+    passport-oauth2: "npm:1.x.x"
+  checksum: 10c0/bdf74433f6f2c68fe3cc80110769f18ea6d50f2f352119f657b47a62fb9073933f0ddf683fd09c2e499fca54238f835b106f41a14f57b250f9abd469795093be
+  languageName: node
+  linkType: hard
+
 "passport-strategy@npm:1.x.x":
   version: 1.0.0
   resolution: "passport-strategy@npm:1.0.0"
   checksum: 10c0/cf4cd32e1bf2538a239651581292fbb91ccc83973cde47089f00d2014c24bed63d3e65af21da8ddef649a8896e089eb9c3ac9ca639f36c797654ae9ee4ed65e1
+  languageName: node
+  linkType: hard
+
+"passport-yandex@npm:^0.0.5":
+  version: 0.0.5
+  resolution: "passport-yandex@npm:0.0.5"
+  dependencies:
+    passport-oauth: "npm:1.0.x"
+    pkginfo: "npm:0.3.x"
+  checksum: 10c0/cb580630e6afc35c72eaf71df57076f8c9cc9b9c8a79c57d49674c80afdfcaa6f0e1eddb8f1793048472994d5424daee2975f7a2b367e3b2c97f8160d9cf770a
   languageName: node
   linkType: hard
 
@@ -15123,6 +15162,13 @@ __metadata:
   dependencies:
     find-up: "npm:^6.3.0"
   checksum: 10c0/1afb23d2efb1ec9d8b2c4a0c37bf146822ad2774f074cb05b853be5dca1b40815c5960dd126df30ab8908349262a266f31b771e877235870a3b8fd313beebec5
+  languageName: node
+  linkType: hard
+
+"pkginfo@npm:0.3.x":
+  version: 0.3.1
+  resolution: "pkginfo@npm:0.3.1"
+  checksum: 10c0/ff3757f4e4866e9c200da7c7693893c19011c8ca0e4eddc82344ad01451b7674d069fa97cf771279ff877b3f363035f6ea7c849ff4758e44a4503867484b55fb
   languageName: node
   linkType: hard
 
