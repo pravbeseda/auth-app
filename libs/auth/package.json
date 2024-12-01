@@ -1,5 +1,5 @@
 {
-    "name": "@auth-app/core",
+    "name": "@auth-app/auth",
     "version": "0.0.1",
     "dependencies": {
         "tslib": "^2.3.0"

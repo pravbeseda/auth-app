@@ -15,7 +15,7 @@
         "skipDefaultLibCheck": true,
         "baseUrl": ".",
         "paths": {
-            "@auth-app/core": ["libs/auth/core/src/index.ts"],
+            "@auth-app/auth": ["libs/auth/src/index.ts"],
             "@auth-app/database": ["libs/data-access/database/src/index.ts"],
             "@auth-app/graphql": ["libs/data-access/graphql/src/index.ts"],
             "@auth-app/prisma": ["libs/data-access/prisma/src/index.ts"],
