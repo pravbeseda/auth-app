@@ -1,16 +1,26 @@
 {
-  "name": "graphql",
-  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/data-access/graphql/src",
-  "projectType": "library",
-  "tags": [],
-  "targets": {
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "libs/data-access/graphql/jest.config.ts"
-      }
+    "name": "graphql",
+    "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "libs/data-access/graphql/src",
+    "projectType": "library",
+    "tags": [],
+    "targets": {
+        "build": {
+            "executor": "@nx/js:tsc",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/libs/data-access/graphql",
+                "main": "libs/data-access/graphql/src/index.ts",
+                "tsConfig": "libs/data-access/graphql/tsconfig.lib.json",
+                "assets": ["libs/data-access/graphql/*.md"]
+            }
+        },
+        "test": {
+            "executor": "@nx/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+            "options": {
+                "jestConfig": "libs/data-access/graphql/jest.config.ts"
+            }
+        }
     }
-  }
 }

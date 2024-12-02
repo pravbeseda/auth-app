@@ -1,3 +1,3 @@
 export function graphql(): string {
-  return 'graphql';
+    return 'graphql';
 }

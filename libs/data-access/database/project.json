@@ -1,16 +1,26 @@
 {
-  "name": "database",
-  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/data-access/database/src",
-  "projectType": "library",
-  "tags": [],
-  "targets": {
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "libs/data-access/database/jest.config.ts"
-      }
+    "name": "database",
+    "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "libs/data-access/database/src",
+    "projectType": "library",
+    "tags": [],
+    "targets": {
+        "build": {
+            "executor": "@nx/js:tsc",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/libs/data-access/database",
+                "main": "libs/data-access/database/src/index.ts",
+                "tsConfig": "libs/data-access/database/tsconfig.lib.json",
+                "assets": ["libs/data-access/database/*.md"]
+            }
+        },
+        "test": {
+            "executor": "@nx/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+            "options": {
+                "jestConfig": "libs/data-access/database/jest.config.ts"
+            }
+        }
     }
-  }
 }

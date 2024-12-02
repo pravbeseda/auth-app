@@ -1,3 +1,3 @@
 export function prisma(): string {
-  return 'prisma';
+    return 'prisma';
 }
