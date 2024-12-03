@@ -11,6 +11,11 @@ export const appRoutes: Route[] = [
             import('./pages/sign-in/sign-in.component').then(m => m.SignInComponent),
     },
     {
+        path: 'register',
+        loadComponent: () =>
+            import('./pages/register/register.component').then(m => m.RegisterComponent),
+    },
+    {
         path: '',
         redirectTo: '/home',
         pathMatch: 'full',
