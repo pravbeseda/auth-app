@@ -5,7 +5,9 @@
     "private": true,
     "scripts": {
         "generate-env": "node generate-env.js",
-        "start": "nx serve",
+        "db": "docker-compose up -d",
+        "client": "nx serve client",
+        "server": "nx serve server",
         "build": "nx run-many --target=build --all",
         "cvr": "jest --verbose --coverage --coverageReporters='text-summary'",
         "test": "nx run-many --target=test --all --parallel",
