@@ -9,9 +9,28 @@ export class UserRepository {
         });
     }
 
-    async getUserByEmail(email: string): Promise<User | null> {
+    async findByEmail(email: string): Promise<User | null> {
         return this.prisma.user.findUnique({
             where: { email },
+        });
+    }
+
+    async findById(id: number) {
+        return this.prisma.user.findUnique({
+            where: { id },
+        });
+    }
+
+    async updateUser(id: number, data: Partial<User>) {
+        return this.prisma.user.update({
+            where: { id },
+            data,
+        });
+    }
+
+    async deleteUser(id: number) {
+        return this.prisma.user.delete({
+            where: { id },
         });
     }
 }

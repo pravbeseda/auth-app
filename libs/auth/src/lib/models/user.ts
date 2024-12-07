@@ -1,8 +1,10 @@
 export interface User {
-    id: string;
-    displayName: string;
+    id: number;
+    name: string;
     email: string;
     photoUrl?: string;
+    createdAt: Date;
+    updatedAt: Date;
 }
 
 export interface AuthenticatedUser extends User {

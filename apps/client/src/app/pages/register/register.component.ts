@@ -1,7 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgIf } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { first } from 'rxjs';
 
 @Component({
     selector: 'app-register',
@@ -14,7 +16,11 @@ import { RouterModule } from '@angular/router';
 export class RegisterComponent {
     registerForm: FormGroup;
 
-    constructor(private fb: FormBuilder) {
+    constructor(
+        private readonly fb: FormBuilder,
+        private readonly authService: AuthService,
+        private router: Router
+    ) {
         this.registerForm = this.fb.group({
             name: ['', [Validators.required, Validators.minLength(3)]],
             email: ['', [Validators.required, Validators.email]],
@@ -23,8 +29,14 @@ export class RegisterComponent {
     }
 
     onSubmit() {
-        if (this.registerForm.valid) {
-            console.log('Form submitted:', this.registerForm.value);
+        if (!this.registerForm.valid) {
+            return;
         }
+        this.authService
+            .registerUser(this.registerForm.value)
+            .pipe(first())
+            .subscribe(() => {
+                this.router.navigate(['/sign-in']);
+            });
     }
 }

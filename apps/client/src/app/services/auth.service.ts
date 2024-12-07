@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, first, Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { isPlatformBrowser } from '@angular/common';
+import { User, UserRegisterInput } from '@auth-app/shared';
 
 @Injectable({
     providedIn: 'root',
@@ -42,5 +43,9 @@ export class AuthService {
 
     logout(): void {
         this.http.post('/auth/logout', {}).subscribe(() => this.loggedInSubject.next(false));
+    }
+
+    registerUser(user: UserRegisterInput): Observable<User> {
+        return this.http.post<User>('/user/register', user);
     }
 }

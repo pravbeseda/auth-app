@@ -7,6 +7,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AuthService } from './services/auth.service';
 import { ENV } from '@auth-app/shared';
 import { YandexStrategy } from './strategies/yandex.strategy';
+import { UserController } from './controllers/user.controller';
+import { DatabaseModule } from '@auth-app/database';
 
 @Module({
     imports: [
@@ -19,8 +21,10 @@ import { YandexStrategy } from './strategies/yandex.strategy';
                 signOptions: { expiresIn: '1h' },
             }),
         }),
+        DatabaseModule,
     ],
+    exports: [AuthService],
     providers: [GoogleStrategy, YandexStrategy, ConfigService, AuthService],
-    controllers: [AuthController],
+    controllers: [AuthController, UserController],
 })
 export class AuthModule {}

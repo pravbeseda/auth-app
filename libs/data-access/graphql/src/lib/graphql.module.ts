@@ -4,6 +4,7 @@ import { UserResolver } from './resolvers/user.resolver';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
 import { ConfigService } from '@nestjs/config';
+import { AuthModule } from '@auth-app/auth';
 
 @Module({
     imports: [
@@ -15,6 +16,7 @@ import { ConfigService } from '@nestjs/config';
             }),
             inject: [ConfigService],
         }),
+        AuthModule,
     ],
     providers: [UserResolver],
 })
